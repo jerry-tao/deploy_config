@@ -3,7 +3,7 @@
 ```
 sh install.sh #{app_name}
 ```
-!Important: It use rbenv and postgresql as default env and just use it on an ubuntu system.
+**Important: It use rbenv and postgresql as default env and just use it on an ubuntu system.**
 
 #Add an deploy user
 
