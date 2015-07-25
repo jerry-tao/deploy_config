@@ -1,3 +1,18 @@
+set -e
+help_info(){
+  echo `basename $0: `
+  echo 'Need an app name.'
+  exit 1
+}
+
+if [ $# -lt 1 ] 
+then
+  help_info
+fi
+
+install_requirements
+
+
 #Add an deploy user
 #Just set the web_app home to your user home and add an user for deploy it.
 echo "Add an deploy user..."
@@ -5,10 +20,10 @@ groupadd webapp
 useradd -m -g webapp $1.com
 usermod -a -G sudo $1.com
 #Install the requirements
-
-echo "Installing the requirements..."
-apt-get install -y wget vim build-essential openssl libreadline6 libreadline6-dev libsqlite3-dev libmysqlclient-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf automake libtool imagemagick libmagickwand-dev libpcre3-dev language-pack-zh-hans libevent-dev postgresql-9.3 libpq-dev postgresql-contrib nginx >> /dev/null
-
+install_requirments(){
+  echo "Installing the requirements..."
+  apt-get install -y wget vim build-essential openssl libreadline6 libreadline6-dev libsqlite3-dev libmysqlclient-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf automake libtool imagemagick libmagickwand-dev libpcre3-dev language-pack-zh-hans libevent-dev postgresql-9.3 libpq-dev postgresql-contrib nginx >> /dev/null
+}
 #Install rvm/rbenv
 echo "Installing the rvm/rbenv..."
 #gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
